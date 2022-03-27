@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edition{% endblock %}
+
+{% block body %}
+
+<div class="admincategoryadd">
+<h1>Editer {{ category.name }}</h1>
+{{ form_start(formView, {'attr': {'novalidate': 'novalidate'}}) }}
+    {{ form_widget(formView) }}
+    <button type="submit">Valider</button>
+{{ form_end(formView) }}
+
+{% endblock %}

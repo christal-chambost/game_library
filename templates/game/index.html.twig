@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ game.name }}{% endblock %}
+
+{% block body %}
+
+<div class="gamepage">
+    <div class="gamepage-content">
+        <h1>{{ game.name }}</h1>
+        <img src="{{ game.image }}" alt="image-{{ game.name|slug }}" />
+        <p>{{ game.description }}</p>
+    Appartient à :  <a href="{{ path ('app_category', {'slug': category.slug }) }}">
+                    <div class="gamepage-content-btn" style="background-color: {{ category.color }};">{{ category.name }}</div>
+                    </a>  
+    </div>
+</div>
+{% endblock %}

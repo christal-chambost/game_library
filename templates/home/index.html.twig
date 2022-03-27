@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+
+<div class="homepage">
+    <div class="homepage-filter">
+        <h2>FILTRE</h2>
+        <h3>par catégorie</h3>
+            <div class="homepage-filter-content">
+            {% for category in allCategories %}
+                <a href="{{ path ('app_category', {'slug': category.slug }) }}">
+                    <div class="homepage-filter-content-btn" style="background-color: {{ category.color }};">{{ category.name }}</div>
+                </a>               
+            {% endfor %}
+        </div>
+    </div>
+    <div class="homepage-library">
+        <h2>BIBLIOTHEQUE</h2>
+        <div class="homepage-library-content">
+            {% for game in allGames %}
+                <div style="position: relative;">
+                    {% if app.user %}
+                        {% if user in game.users %}
+                            <a href="/user/favorite/remove/{{ game.id }}"><i class="fa-solid fa-star staricon"></i></a> 
+                        {% else %}
+                            <a href="/user/favorite/add/{{ game.id }}"><i class="fa-regular fa-star staricon"></i></a>
+                        {% endif %}
+                    {% endif %}
+                    <a href="/game/{{ game.id }}">
+                        <div class="homepage-library-content-onegame">
+                            <img src="{{ game.image }}" alt="image-{{ game.name|slug }}" />
+                            <span class="homepage-library-content-onegame-title">{{ game.name }}</span>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

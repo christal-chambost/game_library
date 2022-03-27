@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Games List{% endblock %}
+
+{% block body %}
+
+<div class="gamelist">
+    <h1>Liste des jeux</h1>
+    <table class="gamelist-customTable">
+    {% for game in allGames %}
+        <thead>
+            <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>image</th>
+            <th>description</th>
+            <th>category</th>
+            <th>options</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            <td>{{ game.id }}</td>
+            <td>{{ game.name }}</td>
+            <td><img width="200" height="auto" src="{{ game.image }}" alt="{{ game.slug }}" /></td>
+            <td>{{ game.description }}</td>
+            <td>{{ game.category }}</td>
+            <td><button onclick="location.href='/admin/games/list/delete/{{game.id}}'" type="submit">supprimer</button>
+            <button onclick="location.href='/admin/games/list/edit/{{game.id}}'" type="submit">éditer</button></td>
+            </tr>
+        </tbody>
+    {% endfor %}
+    </table>
+</div>
+
+{% endblock %}

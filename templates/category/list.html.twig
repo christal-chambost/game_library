@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categories List{% endblock %}
+
+{% block body %}
+
+<div class="categorylist">
+  <h1>Liste des catégories</h1>
+    <table class="categorylist-customTable">
+    {% for category in allCategories %}
+        <thead>
+            <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>color</th>
+            <th>options</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            <td>{{ category.id }}</td>
+            <td>{{ category.name }}</td>
+            <td><div class="categorylist-customTable-color" style="background-color: {{category.color }}; padding: 5px 0;">{{ category.color }}</div></td>
+            <td><button onclick="location.href='/admin/categories/list/delete/{{category.id}}'" type="submit">supprimer</button>
+            <button onclick="location.href='/admin/categories/list/edit/{{category.id}}'" type="submit">éditer</button></td>
+            </tr>
+        </tbody>
+    {% endfor %}
+    </table>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProfilController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="libraryuser">
+    <h1>Bibliothèque de {{ user.username }}</h1>
+    <div class="libraryuser-content">
+        <div class="libraryuser-content-onegame">
+            {% for game in allGames %}
+                <div style="position: relative;">
+                {% if user in game.users %}
+                        {% if user in game.users %}
+                            <a href="/user/favorite/remove/{{ game.id }}"><i class="fa-solid fa-star staricon"></i></a> 
+                        {% else %}
+                            <a href="/user/favorite/add/{{ game.id }}"><i class="fa-regular fa-star staricon"></i></a>
+                        {% endif %}
+                        <a href="/game/{{ game.id }}">
+                        <div class="homepage-library-content-onegame">
+                            <img src="{{ game.image }}" alt="image-{{ game.name|slug }}" />
+                            <span class="homepage-library-content-onegame-title">{{ game.name }}</span>
+                        </div>
+                    </a>
+                {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
